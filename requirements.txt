@@ -1,0 +1,16 @@
+# Core dependencies
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+colorama>=0.4.6
+
+# Optional (for advanced features)
+pycryptodome>=3.17.0
+pillow>=9.5.0
+
+# Development
+pytest>=7.3.0
+black>=23.3.0
+flake8>=6.0.0
+
+# Platform specific (will be installed on Kali)
+# adb, fastboot, heimdall via apt
