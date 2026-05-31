@@ -1,6 +1,55 @@
 #!/usr/bin/env python3
 """
 Samsung Galaxy A12 Unlock Tool
+"""
+
+import sys
+import os
+import json
+from datetime import datetime
+
+# Try to import modules with fallbacks
+try:
+    from modules.adb_exploit import A12ADBExploit
+except ImportError:
+    print("[!] ADB module not found, creating stub...")
+    class A12ADBExploit:
+        def __init__(self):
+            pass
+        def run(self):
+            print("[!] ADB module not implemented")
+
+try:
+    from modules.frp_bypass import A12FRPBypass
+except ImportError:
+    print("[!] FRP module not found, creating stub...")
+    class A12FRPBypass:
+        def __init__(self):
+            pass
+        def run(self):
+            print("[!] FRP module not implemented")
+
+try:
+    from modules.bootloader_a12 import A12BootloaderExploit
+except ImportError:
+    print("[!] Bootloader module not found, creating stub...")
+    class A12BootloaderExploit:
+        def __init__(self):
+            pass
+        def run(self):
+            print("[!] Bootloader module not implemented")
+
+try:
+    from utils.device_detector import A12Detector
+    from utils.logger import A12Logger
+except ImportError:
+    print("[!] Utility modules not found")
+    sys.exit(1)
+
+# Rest of your main.py code continues...
+#!/usr/bin/env python3
+"""
+Samsung Galaxy A12 Unlock Tool
 Specifically designed for SM-A125F/DS models
 """
 
@@ -406,3 +455,17 @@ if __name__ == "__main__":
         print("\n\n[!] Interrupted by user")
     except Exception as e:
         print(f"\n[!] Critical error: {e}")
+
+# Add to main.py for debugging
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('a12_unlocker.log'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
